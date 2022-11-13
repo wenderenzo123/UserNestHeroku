@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [
+  imports: [ConfigModule.forRoot(),
     MongooseModule.forRoot(
-      'mongodb+srv://wender:k8_-NNf_HbnC9bn@cluster0.kncufjy.mongodb.net/test'
+      `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.kncufjy.mongodb.net/test`
       ),
       UsersModule
     ],
